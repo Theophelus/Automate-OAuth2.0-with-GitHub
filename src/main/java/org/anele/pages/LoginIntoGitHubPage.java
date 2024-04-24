@@ -43,7 +43,7 @@ public class LoginIntoGitHubPage extends DriverFactory {
             element.sendKeys(value);
 
         } catch (Exception e){
-            System.out.println("Element not found with provided valiue: "+ e.getMessage());
+            System.out.println("Element not found with provided value: "+ e.getMessage());
         }
     }
     //click on the login btn
@@ -53,5 +53,9 @@ public class LoginIntoGitHubPage extends DriverFactory {
         } catch (Exception e){
             System.out.println("Button could not be clicked: " + e.getMessage());
         }
+    }
+
+    public static String getCurrentUrl(){
+        return getDriver().getCurrentUrl();
     }
 }

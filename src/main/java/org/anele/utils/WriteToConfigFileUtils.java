@@ -13,6 +13,19 @@ public class WriteToConfigFileUtils {
         properties = new Properties();
     }
 
+    //load current data in config.properties file
+    static void loadProps() {
+        try (FileInputStream file = new FileInputStream("src/main/resources/config.properties")) {
+            //load the file
+            properties.load(file);
+        } catch (IOException e) {
+            throw new RuntimeException("Error while trying to load the config file: " + e);
+        }
+    }
+
+
+
+
 
 
 }

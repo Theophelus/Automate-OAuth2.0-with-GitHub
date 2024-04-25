@@ -13,7 +13,7 @@ public class ReadConfigFileUtil {
         loadProperties();
     }
 
-    private synchronized void loadProperties() {
+    private static synchronized void loadProperties() {
 
         try (FileInputStream file = new FileInputStream("src/main/resources/config.properties")) {
             //load the file
@@ -35,14 +35,23 @@ public class ReadConfigFileUtil {
         return properties.getProperty("clientId");
     }
 
+    public static String getClientSecret() {
+        return properties.getProperty("clientSecret");
+    }
+
     public static String getScope() {
         return properties.getProperty("scope");
     }
-    public static String getUsername(){
+
+    public static String getUsername() {
         return properties.getProperty("username");
     }
 
-    public static String getPassword(){
+    public static String getPassword() {
         return properties.getProperty("password");
+    }
+
+    public static void LoadExistingPropertiesFile() {
+        loadProperties();
     }
 }

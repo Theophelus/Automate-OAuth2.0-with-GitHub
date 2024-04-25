@@ -38,5 +38,10 @@ public class WriteToConfigFileUtils {
         }
     }
 
+    //set value into config.properties file
+    public static void setOAuthToken(String value) {
+        storeProperties(value);
+    }
+
 
 }

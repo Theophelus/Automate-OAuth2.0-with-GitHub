@@ -23,9 +23,20 @@ public class WriteToConfigFileUtils {
         }
     }
 
+    private static void storeProperties(String value) {
+        // Load existing properties from the file
+        loadProps();
 
-
-
+        //write to config.properties files
+        try (FileOutputStream outputStream = new FileOutputStream("src/main/resources/config.properties")) {
+            //set key value pair
+            properties.setProperty("oauth.token", value);
+            //write to file
+            properties.store(outputStream, null);
+        } catch (IOException e) {
+            System.out.println("Issue occurred while trying to write to config file: " + e.getMessage());
+        }
+    }
 
 
 }

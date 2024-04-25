@@ -34,6 +34,9 @@ public class ReadConfigFileUtil {
     public static String getClientId() {
         return properties.getProperty("clientId");
     }
+    public static String getOAuthTokenURL(){
+        return properties.getProperty("oauth_token_url");
+    }
 
     public static String getClientSecret() {
         return properties.getProperty("clientSecret");
@@ -49,9 +52,5 @@ public class ReadConfigFileUtil {
 
     public static String getPassword() {
         return properties.getProperty("password");
-    }
-
-    public static void LoadExistingPropertiesFile() {
-        loadProperties();
     }
 }

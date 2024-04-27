@@ -1,11 +1,7 @@
-package org.anele.Helpers;
+package org.anele.helpers;
 import org.anele.pages.LoginIntoGitHubPage;
 
 import java.text.MessageFormat;
-
-import static org.anele.base.DriverFactory.*;
-import static org.anele.pages.LoginIntoGitHubPage.*;
-import static org.anele.pages.LoginIntoGitHubPage.getCurrentUrl;
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
 
@@ -47,7 +43,8 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         loginIntoGitHub(username, password);
         //get currentUrl
         String getCode = getCurrentUrl();
-        //extract authorization code
+        //extract authorization code'
+        System.out.println("Current url: " + getCode);
         return extractCode(getCode);
     }
 

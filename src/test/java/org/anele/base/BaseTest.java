@@ -3,13 +3,12 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.anele.Helpers.OAuth2Helper;
+import org.anele.helpers.OAuth2Helper;
 import org.anele.utils.ReadConfigFileUtil;
 import org.anele.utils.WriteToConfigFileUtils;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;

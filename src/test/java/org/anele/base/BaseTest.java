@@ -58,4 +58,36 @@ public class BaseTest extends OAuth2Helper {
                 .setBaseUri(oauthBaseUrl)
                 .build();
     }
+    //extract access token
+    protected static String access_token() {
+
+        RequestSpecification httpRequest = getRequestSpec(getOAuthTokenURL());
+        Map<String, String> param = new HashMap<>();
+        param.put("client_id", getClientId());
+        param.put("client_secret", getClientSecret());
+        param.put("scope", getScope());
+        param.put("code", code);
+
+        try {
+            //build the response
+
+            Response httpResponse = given()
+                    .spec(httpRequest)
+                    .formParams(param)
+                    .post();
+
+            if (httpResponse.statusCode() != HttpStatus.SC_OK) {
+                return null;
+            }
+
+            //save into config.properties file
+            setOAuthToken(httpResponse.jsonPath().getString("access_token"));
+            //return token
+            return httpResponse.jsonPath().getString("access_token");
+
+        } catch (Exception e) {
+            System.out.println("Error occurred while trying to extract access token: " + e.getMessage());
+            return null;
+        }
+    }
 }

@@ -1,15 +1,17 @@
 package org.anele.Helpers;
+import org.anele.pages.LoginIntoGitHubPage;
+
 import java.text.MessageFormat;
 
 import static org.anele.base.DriverFactory.*;
 import static org.anele.pages.LoginIntoGitHubPage.*;
 import static org.anele.pages.LoginIntoGitHubPage.getCurrentUrl;
 
-public class OAuth2Helper {
+public class OAuth2Helper extends LoginIntoGitHubPage {
 
 
     //method to build Auth Url with base url, client id and scope as parameters
-    public static StringBuilder buildUrl(String baseUrl,
+    private static StringBuilder buildUrl(String baseUrl,
                                          String clientId,
                                          String scope) {
 
@@ -67,7 +69,5 @@ public class OAuth2Helper {
             System.out.println("Error occurred while trying to extract authorization code:" + e.getMessage());
             return null;
         }
-
     }
-
 }

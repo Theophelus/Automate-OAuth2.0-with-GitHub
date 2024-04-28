@@ -5,7 +5,7 @@ import java.text.MessageFormat;
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
 
-
+    static LogHelper log = new LogHelper(OAuth2Helper.class);
     //method to build Auth Url with base url, client id and scope as parameters
     private static StringBuilder buildUrl(String baseUrl,
                                          String clientId,
@@ -18,8 +18,6 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
                    .append(MessageFormat.format("client_id={0}", clientId))
                    .append("&")
                    .append(MessageFormat.format("scope={0}", scope));
-
-           System.out.println("Base url: " + builder);
 
            return builder;
 
@@ -38,13 +36,17 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         StringBuilder URL = buildUrl(baseUrl, clientId, scope);
         //launch the browser
         assert URL != null;
+
         getDriver().get(URL.toString());
+        log.info(URL.toString() + "is launched successfully");
+        //validate login header
+        loginHeader("Sign in to GitHub");
         //login into the login page
         loginIntoGitHub(username, password);
         //get currentUrl
         String getCode = getCurrentUrl();
         //extract authorization code'
-        System.out.println("Current url: " + getCode);
+        log.info("Session code about to be extracted: " + getCode);
         return extractCode(getCode);
     }
 
@@ -60,10 +62,12 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
 
             }
             //return the auth code
+            log.info("Session code extracted successfully: " +authorizationCode);
             return authorizationCode;
 
         } catch (Exception e) {
-            System.out.println("Error occurred while trying to extract authorization code:" + e.getMessage());
+            log.error("Error occurred while trying to extract authorization code:",
+                    e.getMessage());
             return null;
         }
     }

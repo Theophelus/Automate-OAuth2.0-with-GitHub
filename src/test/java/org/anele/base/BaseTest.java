@@ -4,11 +4,13 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.anele.helpers.OAuth2Helper;
+import org.anele.helpers.LogHelper;
 import org.anele.utils.ReadConfigFileUtil;
 import org.anele.utils.WriteToConfigFileUtils;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,7 @@ import static org.anele.utils.ReadConfigFileUtil.*;
 import static org.anele.utils.WriteToConfigFileUtils.setOAuthToken;
 
 public class BaseTest extends OAuth2Helper {
+    static LogHelper log = new LogHelper(BaseTest.class);
     protected static String code = "";
 
     public BaseTest() {
@@ -28,6 +31,7 @@ public class BaseTest extends OAuth2Helper {
     @BeforeClass
     void setup() {
         generateSessionCode();
+        access_token();
     }
 
     @AfterClass
@@ -45,8 +49,6 @@ public class BaseTest extends OAuth2Helper {
                         getUsername(),
                         getPassword()
                 );
-        System.out.println("session code: " + code);
-
     }
 
     //define a method, to get requestSpecification builder for oauth end point
@@ -57,6 +59,7 @@ public class BaseTest extends OAuth2Helper {
                 .setBaseUri(oauthBaseUrl)
                 .build();
     }
+
     //extract access token
     protected static String access_token() {
 
@@ -76,16 +79,20 @@ public class BaseTest extends OAuth2Helper {
                     .post();
 
             if (httpResponse.statusCode() != HttpStatus.SC_OK) {
+//                logHelper.error();
                 return null;
             }
 
             //save into config.properties file
             setOAuthToken(httpResponse.jsonPath().getString("access_token"));
             //return token
+            log.info("Access token extracted successfully: "
+                    + httpResponse.jsonPath().getString("access_token"));
             return httpResponse.jsonPath().getString("access_token");
 
         } catch (Exception e) {
-            System.out.println("Error occurred while trying to extract access token: " + e.getMessage());
+            log.error("Error occurred while trying to extract access token: ",
+                    e.getMessage());
             return null;
         }
     }

@@ -1,6 +1,7 @@
 package org.anele.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.anele.helpers.LogHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class DriverFactory {
     protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    static LogHelper log = new LogHelper(DriverFactory.class);
 
     //get The driver from DriverPage
     public static WebDriver getDriver() {
@@ -60,6 +62,8 @@ public class DriverFactory {
     public static void quitDrivers() {
         getDriver().quit();
         driver.remove();
+        //add logHelper
+        log.endTest();
     }
 
 

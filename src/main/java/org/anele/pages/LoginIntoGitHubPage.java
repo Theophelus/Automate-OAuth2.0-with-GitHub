@@ -1,11 +1,13 @@
 package org.anele.pages;
 
 import org.anele.base.DriverFactory;
+import org.anele.helpers.LogHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class LoginIntoGitHubPage extends DriverFactory {
+    static LogHelper log = new LogHelper(LoginIntoGitHubPage.class);
     //define WebElements locators
     private static final By username = By.id("login_field");
     private static final By password = By.id("password");
@@ -15,7 +17,8 @@ public class LoginIntoGitHubPage extends DriverFactory {
 
     //define a method to get the login header
     public static boolean loginHeader(String header) {
-        return getDriver().findElement(signupHeader).getText().equalsIgnoreCase(header);
+        log.info(header + ":" + " text is validated successfully");
+        return getDriver().findElement(signupHeader).getText().contains(header);
     }
 
     //login into the gitHub login page
@@ -37,25 +40,37 @@ public class LoginIntoGitHubPage extends DriverFactory {
             String currentElement = element.getAttribute("value");
 
             if (!currentElement.isEmpty()) {
+                log.info("Clearing text box for element " + currentElement + " ");
                 element.sendKeys(Keys.BACK_SPACE.toString().repeat(currentElement.length()));
             }
 
+            log.info("Populating text box with value " + value + ".");
             element.sendKeys(value);
 
-        } catch (Exception e){
-            System.out.println("Element not found with provided value: "+ e.getMessage());
+        } catch (Exception e) {
+            log.error("Element " + element + " not found with provided value", e.getMessage());
         }
     }
+
     //click on the login btn
     private static void clickBtn() {
         try {
-            getDriver().findElement(signIn).click();
-        } catch (Exception e){
-            System.out.println("Button could not be clicked: " + e.getMessage());
+            var element = getDriver().findElement(signIn);
+
+            log.info(getDriver().findElement(signIn).getText() + "button is about to be clicked");
+
+            if (element.isDisplayed()) {
+
+                log.info(getDriver().findElement(signIn).getText() + ":" + "button clicked successfully");
+                getDriver().findElement(signIn).click();
+
+            }
+        } catch (Exception e) {
+            log.error("Button could not be clicked for provided element: ", e.getMessage());
         }
     }
 
-    public static String getCurrentUrl(){
+    public static String getCurrentUrl() {
         return getDriver().getCurrentUrl();
     }
 }

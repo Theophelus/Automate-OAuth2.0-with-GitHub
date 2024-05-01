@@ -14,7 +14,7 @@ public class WriteToConfigFileUtils {
     }
 
     //load current data in config.properties file
-    static void loadProps() {
+    static synchronized void loadProps() {
         try (FileInputStream file = new FileInputStream("src/main/resources/config.properties")) {
             //load the file
             properties.load(file);
@@ -22,11 +22,9 @@ public class WriteToConfigFileUtils {
             throw new RuntimeException("Error while trying to load the config file: " + e);
         }
     }
-
-    private static void storeProperties(String value) {
+    private static synchronized void storeProperties(String value) {
         // Load existing properties from the file
         loadProps();
-
         //write to config.properties files
         try (FileOutputStream outputStream = new FileOutputStream("src/main/resources/config.properties")) {
             //set key value pair
@@ -37,11 +35,8 @@ public class WriteToConfigFileUtils {
             System.out.println("Issue occurred while trying to write to config file: " + e.getMessage());
         }
     }
-
     //set value into config.properties file
     public static void setOAuthToken(String value) {
         storeProperties(value);
     }
-
-
 }

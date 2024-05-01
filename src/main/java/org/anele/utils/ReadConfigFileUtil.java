@@ -27,7 +27,7 @@ public class ReadConfigFileUtil {
         return properties.getProperty("browser");
     }
 
-    public static String getBaseURL() {
+    public static String getOAuthBaseURL() {
         return properties.getProperty("oauthBaseURL");
     }
 

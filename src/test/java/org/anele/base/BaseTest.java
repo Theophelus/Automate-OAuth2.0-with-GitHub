@@ -1,12 +1,12 @@
 package org.anele.base;
 
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.anele.helpers.OAuth2Helper;
 import org.anele.helpers.LogHelper;
+import org.anele.utils.PathUtils;
 import org.anele.utils.ReadConfigFileUtil;
 import org.anele.utils.WriteToConfigFileUtils;
 import org.apache.http.HttpStatus;
@@ -15,6 +15,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
 import static org.anele.utils.ReadConfigFileUtil.*;
@@ -24,7 +25,7 @@ public class BaseTest extends OAuth2Helper {
     static LogHelper log = new LogHelper(BaseTest.class);
     protected static String code = "";
     //define Request specification to build a request with access token;
-    RequestSpecification httpRequest;
+    private static RequestSpecification httpRequest;
 
     public BaseTest() {
         new ReadConfigFileUtil();
@@ -32,20 +33,16 @@ public class BaseTest extends OAuth2Helper {
     }
 
     @BeforeSuite
-    public void setup() throws Exception {
+     public void setup() throws Exception {
         generateSessionCode();
         //build a request
         httpRequest = new RequestSpecBuilder()
                 .setBaseUri(ReadConfigFileUtil.getBaseUrl())
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", "Bearer " + access_token())
+                .addHeader("X-GitHub-Api-Version", "2022-11-28")
+                .and()
                 .build();
-
-    }
-
-    @Test
-    void sample() {
-        System.out.println("Welcome home..." + httpRequest);
     }
 
     @AfterSuite
@@ -110,5 +107,29 @@ public class BaseTest extends OAuth2Helper {
             throw new Exception("Error occurred while trying to extract access token:"
                     + e.getMessage(), e);
         }
+    }
+
+    //get json response from, HTTPS Request
+    public Response getOperation(RequestSpecification requestSpec,
+                                 PathUtils pathBuilder, Map<String, String> param) {
+
+        httpRequest = requestSpec.relaxedHTTPSValidation();
+
+        if (param != null & !Objects.requireNonNull(param).isEmpty()) {
+            httpRequest.pathParams(param);
+        }
+
+        //return the response
+        var path = pathBuilder.getPath();
+        //get json response
+        return
+                given()
+                        .spec(httpRequest)
+                        .when()
+                        .get(path);
+    }
+
+    public static RequestSpecification getHttpRequest() {
+        return httpRequest;
     }
 }

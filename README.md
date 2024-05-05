@@ -31,7 +31,8 @@ https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28
 ![img.png](img.png)
 
 ### Will be building using:
-1). Html and css.
-2). A bit of Javascript.
-3). VueJS or Handlebars Template for templating.
-4). TestNG IReporter interface for appending data
+
+1. Html and css.
+2. A bit of Javascript.
+3. VueJS or Handlebars Template for templating.
+4. TestNG IReporter interface for appending data

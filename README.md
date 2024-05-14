@@ -22,6 +22,7 @@ OAuth 2.0 is to manage resources securely, in this case, particularly when inter
 
 ### Documentation:
 https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28
+
 https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28
 
 ### Custom Reporting layout:

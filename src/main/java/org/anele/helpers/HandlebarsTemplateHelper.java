@@ -32,13 +32,13 @@ public class HandlebarsTemplateHelper {
     }
 
     //render partials templates
-    public static String renderPartials(String path, Map<String, Object> statisticsData) {
+    public static String renderPartials(String path, Map<String, Object> partialsData) {
 
         try {
 
             Template template = handlebars.compileInline(new String(Files.readAllBytes(
                     Paths.get(path))));
-            return template.apply(Context.newBuilder(statisticsData).build());
+            return template.apply(Context.newBuilder(partialsData).build());
 
         } catch (Exception e) {
             log.error(

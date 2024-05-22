@@ -1,0 +1,51 @@
+<style>
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .stats div {
+      flex-basis: 30%;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .stats div p {
+      font-weight: bold;
+    }
+
+    .stats div:nth-child(1) {
+      margin-left: 5px;
+      background-color: #ff6f59;
+      color: #333;
+    }
+
+    .stats div:nth-child(2) {
+      margin-left: 5px;
+      background-color: #254441;
+      color: #fff;
+    }
+
+    .stats div:nth-child(3) {
+      margin-left: 5px;
+      background-color: #e63946;
+      color: #333;
+    }
+</style>
+<div class="stats">
+    <div>
+        <h2>EXECUTED TEST CASES</h2>
+        <p>{{executedTestCases}}</p>
+    </div>
+    <div>
+        <h2>PASSED TEST CASES</h2>
+        <p>{{passedTestCases}}</p>
+    </div>
+    <div>
+        <h2>FAILED TEST CASES</h2>
+        <p>{{failedTestCases}}</p>
+    </div>
+</div>

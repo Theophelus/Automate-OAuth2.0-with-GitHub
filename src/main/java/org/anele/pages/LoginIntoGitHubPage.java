@@ -1,9 +1,10 @@
 package org.anele.pages;
 
-import org.anele.base.DriverFactory;
+import org.anele.basePage.DriverFactory;
 import org.anele.helpers.LogHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class LoginIntoGitHubPage extends DriverFactory {
@@ -14,15 +15,25 @@ public class LoginIntoGitHubPage extends DriverFactory {
     private static final By signIn = By.xpath("//input[@name='commit']");
     private static final By signupHeader =
             By.xpath("//div[@class=\"mb-4 pb-3 border-bottom color-border-muted h4 text-normal text-center\"]//p");
+    private static final By clickAuthBtn = By.xpath("//button[normalize-space()='Authorize Theophelus']");
 
     //define a method to get the login header
-    public static boolean loginHeader(String header) {
+    public static boolean headerText(String header) {
         log.info(header + ":" + " text is validated successfully");
         return getDriver().findElement(signupHeader).getText().contains(header);
     }
 
     //login into the gitHub login page
     public static void loginIntoGitHub(String usernameValue, String passwordValue) {
+
+        try {
+            if (getDriver().findElement(By.xpath("//h1[normalize-space()='Reauthorization required']")).isDisplayed()) {
+                getDriver().findElement(clickAuthBtn).click();
+            }
+        } catch (NoSuchElementException e) {
+            log.info("Reauthorization not required: " + e.getMessage());
+        }
+
         WebElement usernameWebElement = getDriver().findElement(username);
         WebElement passwordWebElement = getDriver().findElement(password);
         //set values

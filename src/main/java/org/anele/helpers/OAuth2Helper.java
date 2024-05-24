@@ -1,34 +1,34 @@
 package org.anele.helpers;
 import org.anele.pages.LoginIntoGitHubPage;
-
 import java.text.MessageFormat;
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
 
     static LogHelper log = new LogHelper(OAuth2Helper.class);
+
     //method to build Auth Url with base url, client id and scope as parameters
     private static StringBuilder buildUrl(String baseUrl,
-                                         String clientId,
-                                         String scope) {
+                                          String clientId,
+                                          String scope) {
 
-       try {
+        try {
 
-         StringBuilder builder=  new StringBuilder(baseUrl)
-                   .append("?")
-                   .append(MessageFormat.format("client_id={0}", clientId))
-                   .append("&")
-                   .append(MessageFormat.format("scope={0}", scope));
+            StringBuilder builder = new StringBuilder(baseUrl)
+                    .append("?")
+                    .append(MessageFormat.format("client_id={0}", clientId))
+                    .append("&")
+                    .append(MessageFormat.format("scope={0}", scope));
 
-           return builder;
+            return builder;
 
-       } catch (Exception e){
-           System.out.println("Base URL not built successfully" + e.getMessage());
-           return null;
-       }
+        } catch (Exception e) {
+            System.out.println("Base URL not built successfully" + e.getMessage());
+            return null;
+        }
     }
 
     public static String returnOAuthorizationCode(String browser,
-            String baseUrl, String clientId, String scope, String username, String password) {
+                                                  String baseUrl, String clientId, String scope, String username, String password) {
 
         //get current browser to extract auth code
         getCurrentBrowser(browser);
@@ -40,7 +40,7 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         getDriver().get(URL.toString());
         log.info(URL.toString() + "is launched successfully");
         //validate login header
-        loginHeader("Sign in to GitHub");
+        headerText("Sign in to GitHub");
         //login into the login page
         loginIntoGitHub(username, password);
         //get currentUrl
@@ -62,7 +62,7 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
 
             }
             //return the auth code
-            log.info("Session code extracted successfully: " +authorizationCode);
+            log.info("Session code extracted successfully: " + authorizationCode);
             return authorizationCode;
 
         } catch (Exception e) {

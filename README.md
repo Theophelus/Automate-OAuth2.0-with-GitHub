@@ -27,6 +27,9 @@ https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28
 
 ### Custom Reporting layout:
 ![img_1.png](img_1.png)
+
+### Rendered Report information:
+![img_2.png](img_2.png)
 ### Will be building using:
 1. Html and css.
 2. A bit of Javascript.

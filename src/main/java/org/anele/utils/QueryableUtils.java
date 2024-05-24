@@ -1,6 +1,7 @@
 package org.anele.utils;
 
 import io.restassured.http.Header;
+import io.restassured.response.Response;
 import io.restassured.specification.QueryableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.SpecificationQuerier;
@@ -29,6 +30,21 @@ public class QueryableUtils {
         }
         //push the headers in the template as key value pair
         map.put("headers", storeRequestInfo);
+    }
+
+    public static void responseLogForReport(Response response) {
+        map.put("Status", response.getStatusCode());
+        map.put("Body", response.getBody().prettyPrint());
+    }
+
+    //consolidate both for request and response
+    public static void RequestAndResponseLogInfo(RequestSpecification requestSpecification, Response response) {
+        requestLogForReport(requestSpecification);
+        responseLogForReport(response);
+    }
+
+    public static Map<String, Object> getBuildRequests() {
+        return map;
     }
 
 

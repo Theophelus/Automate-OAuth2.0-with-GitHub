@@ -1,0 +1,45 @@
+<style>
+    .execution-info {
+        display: block;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .info-item {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .label {
+        font-weight: bold;
+        margin-right: 10px;
+        width: 200px;
+        display: inline-block;
+    }
+
+</style>
+
+<div class="execution-info">
+
+    <div class="info-item">
+        <span class="label">Execution Pass Percentage:</span>
+        <span class="value">
+            {{PassTestCaseExecution}} %
+        </span>
+    </div>
+    <div class="info-item">
+        <span class="label">Failed Execution Percentage:</span>
+        <span class="value">
+            {{FailedTestCasesExecuted}} %
+        </span>
+    </div>
+    <div class="info-item">
+        <span class="label">Total Execution Time:</span>
+        <span class="value">
+            {{TotalTimeExecution}} Minutes
+        </span>
+    </div>
+</div>

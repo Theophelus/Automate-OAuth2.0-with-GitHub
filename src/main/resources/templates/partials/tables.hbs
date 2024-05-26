@@ -1,0 +1,92 @@
+<style>
+    .session {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: normal;
+    }
+
+    .session td span.indicator {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        margin-right: 5px;
+    }
+
+     .session td .pass {
+        background-color: #3a5a40;
+        color: #fff;
+    }
+
+    .session td .fail {
+        background-color: #d72638;
+        color: #fff;
+    }
+</style>
+<div class="session">
+    <table>
+        <thead>
+        <tr>
+            <th>Test Suite</th>
+            <th>Test Case</th>
+            <th>Duration</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each table}}
+
+            <tr class="collapsible-row">
+
+                <td>{{TestSuite}}</td>
+                <td>{{TestCase}}</td>
+                <td>{{Duration}} ms</td>
+                <td><span class="indicator {{status}}"></span>
+                </td>
+            </tr>
+            <tr class="hidden-row">
+                <td colspan="4">
+                    <div class="content">
+                        <div>
+                            <h4>REQUEST SPECIFICATIONS:</h4>
+                            <p>Endpoint: {{Endpoint}}</p>
+                            <h5>HEADERS ARE: </h5>
+                            {{#each headers}}
+                                <p>
+                                    {{@key}} : {{this}}
+                                </p>
+                            {{/each}}
+                        </div>
+                        <div>
+                            <h4>RESPONSE SPECIFICATIONS:</h4>
+                            <p>Response Status Code: {{Status}}</p>
+                            <p>Response Body: {{Body}}</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        {{/each}}
+        </tbody>
+    </table>
+
+</div>

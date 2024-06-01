@@ -1,15 +1,36 @@
 package org.anele.tests;
-
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
 import org.anele.calls.UserApiCalls;
-import org.anele.pojo.User;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
-
 public class UserTests extends UserApiCalls {
+
+    private final UserApiCalls userApiCalls;
+
+    public UserTests(){
+        userApiCalls = new UserApiCalls();
+    }
+
+    @Test(description = "Basic test case to retrieve authenticated user GitHub information")
+    public void getAuthenticatedUserEmail() throws Exception {
+
+        String username = "Theophelus";
+        //get user data
+        var user = userApiCalls.getUser(username);
+
+        System.out.println("Print user email address: " + user.getEmail());
+
+    }
+
+    @Test(description = "Basic test case to retrieve authenticated user GitHub information")
+    public void getAuthenticatedUserName() throws Exception {
+
+        String username = "Theophelus";
+        //get user data
+        var user = userApiCalls.getUser(username);
+
+        System.out.println("Print user name: " + user.getName());
+
+    }
 
 
 }

@@ -41,6 +41,29 @@
         background-color: #d72638;
         color: #fff;
     }
+
+    .session td .pass::before {
+        content: "\2714";
+    }
+
+    .session td .fail::before {
+        content: "\2718";
+    }
+    .hidden-row {
+        display: none;
+    }
+    .collapsible-row {
+        cursor: pointer;
+    }
+    .content {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #f1f1f1;
+    }
+    .content div {
+       width: 48%;
+    }
 </style>
 <div class="session">
     <table>
@@ -88,5 +111,5 @@
         {{/each}}
         </tbody>
     </table>
-
+    <script src="public/js/actions.js" charset="utf-8"></script>
 </div>

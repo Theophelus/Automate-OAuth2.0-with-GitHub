@@ -24,10 +24,12 @@ public class LoginIntoGitHubPage extends DriverFactory {
     }
 
     //login into the gitHub login page
-    public static void loginIntoGitHub(String usernameValue, String passwordValue) {
-
+    public static void loginIntoGitHub(String usernameValue, String passwordValue) throws InterruptedException {
         try {
-            if (getDriver().findElement(By.xpath("//h1[normalize-space()='Reauthorization required']")).isDisplayed()) {
+            if (getDriver().
+                    findElement(
+                            By.xpath(
+                                    "/html/body/div[1]/div[6]/main/div/div[2]/div[1]/div[2]/div[1]/form/div/button[2]")).isDisplayed()) {
                 getDriver().findElement(clickAuthBtn).click();
             }
         } catch (NoSuchElementException e) {

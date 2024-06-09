@@ -91,7 +91,6 @@
             <version>${handlebars.version}</version>
         </dependency>
 
-
     </dependencies>
     <build>
         <pluginManagement>
@@ -103,7 +102,10 @@
                     <version>3.2.5</version>
                     <configuration>
                         <suiteXmlFiles>
-                            <suiteXmlFile>src/test/resources/user.xml</suiteXmlFile>
+
+                            <suiteXmlFile>src/test/resources/suites/user.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/suites/smoke.xml</suiteXmlFile>
+
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>

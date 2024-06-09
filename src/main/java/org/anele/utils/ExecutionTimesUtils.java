@@ -2,6 +2,8 @@ package org.anele.utils;
 
 import org.testng.ITestResult;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 public class ExecutionTimesUtils {
@@ -28,6 +30,13 @@ public class ExecutionTimesUtils {
         }
 
         return duration;
+    }
+    //get current date
+    public static String getCurrentDay() {
+        //Get current date
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+        Date date = new Date();
+        return formatter.format(date);
     }
     //get minutes values
     public static Double getMinutes() {

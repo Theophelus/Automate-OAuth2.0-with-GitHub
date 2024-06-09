@@ -1,4 +1,4 @@
-package org.anele.base;
+package org.anele.basePage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.anele.helpers.LogHelper;

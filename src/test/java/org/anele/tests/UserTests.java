@@ -1,5 +1,6 @@
 package org.anele.tests;
 import org.anele.calls.UserApiCalls;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UserTests extends UserApiCalls {
@@ -24,11 +25,12 @@ public class UserTests extends UserApiCalls {
     @Test(description = "Basic test case to retrieve authenticated user GitHub information")
     public void getAuthenticatedUserName() throws Exception {
 
-        String username = "Theophelus";
+        String username = "Teophelus";
         //get user data
         var user = userApiCalls.getUser(username);
+        Assert.assertEquals(username, user.getName());
 
-        System.out.println("Print user name: " + user.getName());
+//        System.out.println("Print user name: " + user.getName());
 
     }
 

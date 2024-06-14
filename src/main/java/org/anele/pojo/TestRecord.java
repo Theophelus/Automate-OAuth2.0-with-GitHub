@@ -1,7 +1,7 @@
 package org.anele.pojo;
 
-public class Result {
-    private int totalNumberOfTestCases;
+public class TestRecord {
+    private int totalNumberOfTestCases=0;
     private int passedNumberOfTestCases;
     private int failedNumberOfTestCases;
     private String suiteName;
@@ -10,10 +10,10 @@ public class Result {
     private String duration;
     private String status;
 
-    public Result(){
+    public TestRecord(){
     }
 
-    public Result(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, String suiteName, String tcName, StringBuilder totalTimeExecution, String duration, String status) {
+    public TestRecord(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, String suiteName, String tcName, StringBuilder totalTimeExecution, String duration, String status) {
         this.totalNumberOfTestCases = totalNumberOfTestCases;
         this.passedNumberOfTestCases = passedNumberOfTestCases;
         this.failedNumberOfTestCases = failedNumberOfTestCases;

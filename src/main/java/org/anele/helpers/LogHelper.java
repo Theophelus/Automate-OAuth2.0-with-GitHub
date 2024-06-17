@@ -18,8 +18,11 @@ public class LogHelper {
         log.info(message);
     }
 
-    public static void error(String message, String e) {
+    public  void error(String message, String e) {
         log.error(message, e);
+    }
+    public void severe(String message) {
+        log.fatal(message);
     }
 
     public static void endTest() {

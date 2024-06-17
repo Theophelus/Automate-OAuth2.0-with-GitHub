@@ -18,6 +18,6 @@ public class BioTests extends UserApiCalls {
         String username = "Theophelus";
         //get user data
         var user = userApiCalls.getUser(username);
-        Assert.assertTrue(user.getBio().contains("idhwich2"),"BIO don't match with provided information");
+        Assert.assertTrue(user.getBio().contains("SDET"),"BIO don't match with provided information");
     }
 }

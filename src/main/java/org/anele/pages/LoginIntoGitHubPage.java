@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginIntoGitHubPage extends DriverFactory {
     static LogHelper log = new LogHelper(LoginIntoGitHubPage.class);
@@ -25,24 +27,28 @@ public class LoginIntoGitHubPage extends DriverFactory {
 
     //login into the gitHub login page
     public static void loginIntoGitHub(String usernameValue, String passwordValue) throws InterruptedException {
+        Thread.sleep(6000);
         try {
-            if (getDriver().
-                    findElement(
-                            By.xpath(
-                                    "/html/body/div[1]/div[6]/main/div/div[2]/div[1]/div[2]/div[1]/form/div/button[2]")).isDisplayed()) {
-                getDriver().findElement(clickAuthBtn).click();
+            if (getDriver().findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/div[2]/div[1]/form/div/button[2]")).isDisplayed()) {
+                System.out.println("Authorize button to be clicked: " );
+                getDriver().findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/div[2]/div[1]/form/div/button[2]")).click();
+                Thread.sleep(6000);
             }
         } catch (NoSuchElementException e) {
             log.info("Reauthorization not required: " + e.getMessage());
-        }
+            try {
+                WebElement usernameWebElement = getDriver().findElement(username);
+                WebElement passwordWebElement = getDriver().findElement(password);
+                //set values
+                setupRequiredValue(usernameWebElement, usernameValue);
+                setupRequiredValue(passwordWebElement, passwordValue);
+                //click on the sign in btn
+                clickBtn();
 
-        WebElement usernameWebElement = getDriver().findElement(username);
-        WebElement passwordWebElement = getDriver().findElement(password);
-        //set values
-        setupRequiredValue(usernameWebElement, usernameValue);
-        setupRequiredValue(passwordWebElement, passwordValue);
-        //click on the sign in btn
-        clickBtn();
+            } catch (NoSuchElementException elementException) {
+                log.severe("Login elements not found: " + elementException.getMessage());
+            }
+        }
     }
 
     //define a reusable method to set up required values

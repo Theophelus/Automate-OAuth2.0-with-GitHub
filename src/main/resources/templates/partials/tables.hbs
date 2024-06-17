@@ -41,6 +41,10 @@
         background-color: #d72638;
         color: #fff;
     }
+    .session td .skip {
+        background-color: orange;
+        color: #fff;
+    }
 
     .session td .pass::before {
         content: "\2714";
@@ -49,6 +53,12 @@
     .session td .fail::before {
         content: "\2718";
     }
+    .session td .skip::before {
+        content: "\27A1";
+        font-weight: 900;
+        color: #fff;
+    }
+
     .hidden-row {
         display: none;
     }

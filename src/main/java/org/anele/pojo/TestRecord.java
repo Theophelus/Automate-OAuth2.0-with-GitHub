@@ -2,24 +2,18 @@ package org.anele.pojo;
 
 public class TestRecord {
     private int totalNumberOfTestCases=0;
-    private int passedNumberOfTestCases;
-    private int failedNumberOfTestCases;
-    private String suiteName;
-    private String tcName;
-    private StringBuilder totalTimeExecution;
+    private int passedNumberOfTestCases=0;
+    private int failedNumberOfTestCases=0;
     private String duration;
     private String status;
 
     public TestRecord(){
     }
 
-    public TestRecord(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, String suiteName, String tcName, StringBuilder totalTimeExecution, String duration, String status) {
+    public TestRecord(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, String duration, String status) {
         this.totalNumberOfTestCases = totalNumberOfTestCases;
         this.passedNumberOfTestCases = passedNumberOfTestCases;
         this.failedNumberOfTestCases = failedNumberOfTestCases;
-        this.suiteName = suiteName;
-        this.tcName = tcName;
-        this.totalTimeExecution = totalTimeExecution;
         this.duration = duration;
         this.status = status;
     }
@@ -48,29 +42,7 @@ public class TestRecord {
         this.failedNumberOfTestCases = failedNumberOfTestCases;
     }
 
-    public String getSuiteName() {
-        return suiteName;
-    }
 
-    public void setSuiteName(String suiteName) {
-        this.suiteName = suiteName;
-    }
-
-    public String getTcName() {
-        return tcName;
-    }
-
-    public void setTcName(String tcName) {
-        this.tcName = tcName;
-    }
-
-    public StringBuilder getTotalTimeExecution() {
-        return totalTimeExecution;
-    }
-
-    public void setTotalTimeExecution(StringBuilder totalTimeExecution) {
-        this.totalTimeExecution = totalTimeExecution;
-    }
 
     public String getDuration() {
         return duration;

@@ -28,6 +28,24 @@ public class BuilderResultsUtils {
                 tr.setPassedNumberOfTestCases((tc.getPassedTests().size())+1);
                 tr.setFailedNumberOfTestCases((tc.getFailedTests().size()) +1);
 
+                Set<ITestResult> it = new HashSet<>();
+                it.addAll(tc.getPassedTests().getAllResults());
+                it.addAll(tc.getFailedTests().getAllResults());
+                //get all test methods
+                ITestNGMethod[] allTestMethods = tc.getAllTestMethods();
+                for (ITestNGMethod iTestNGMethod : allTestMethods) {
+                    //calculate duration
+                    tr.setDuration(String.valueOf(calculateTestDurations(it, iTestNGMethod.getMethodName())));
+                    // add a map to append data into the template
+                    Map<String, Object> r = new HashMap<>();
+                    r.put("TestSuite", suite.getName());
+                    r.put("TestCase", iTestNGMethod.getMethodName());
+                    r.put("Duration", tr.getDuration());
+
+                    // add result into the list
+                    results.add(r);
+                }
+
             }
         }
 
@@ -35,8 +53,7 @@ public class BuilderResultsUtils {
         return tr;
     }
 
-    //get the results
-
+    //get results
     public static List<Map<String, Object>> getResults() {
         return results;
     }

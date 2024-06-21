@@ -53,6 +53,10 @@ public class BuilderResultsUtils {
         return tr;
     }
 
+    private static void testStatus(ITestNGMethod iTestNGMethod, ITestContext tc, Map<String, Object> r, TestRecord tr) {
+
+    }
+
     //get results
     public static List<Map<String, Object>> getResults() {
         return results;

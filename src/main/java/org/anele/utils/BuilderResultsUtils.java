@@ -46,7 +46,8 @@ public class BuilderResultsUtils {
                     r.put("TestSuite", suite.getName());
                     r.put("TestCase", iTestNGMethod.getMethodName());
                     r.put("Duration", duration);
-
+                    //extract status for each test record
+                    testCaseStatus(iTestNGMethod, tc);
                     r.put("status", status);
                     tr.setStatus(status);
                     results.add(r);
@@ -63,6 +64,28 @@ public class BuilderResultsUtils {
         );
     }
 
+    private static void testCaseStatus(ITestNGMethod iTestNGMethod, ITestContext tc) {
+        // Check if the test method is in the list of passed tests
+        boolean indicator = false;
+        for (ITestNGMethod method : tc.getPassedTests().getAllMethods()) {
+            if (method.getMethodName().contains(iTestNGMethod.getMethodName())) {
+                status = "pass";
+                indicator = true;
+                break;
+            }
+        }
+        // If the test is not passed, check if it is in the list of skipped tests
+        if (!indicator) {
+            for (ITestNGMethod method : tc.getFailedTests().getAllMethods()) {
+                if (method.getMethodName().contains(iTestNGMethod.getMethodName())) {
+                    status = "fail";
+                } else {
+                    status = "skip";
+                }
+                break;
+            }
+        }
+    }
     //get the results
     public static List<Map<String, Object>> getResults() {
         return results;

@@ -16,6 +16,7 @@ public class BuilderResultsUtils {
         int totalNumberOfTestCases = 0;
         int passedNumberOfTestCases = 0;
         int failedNumberOfTestCases = 0;
+        int skippedNumberOfTestCases = 0;
 
         String duration = null;
 
@@ -33,6 +34,7 @@ public class BuilderResultsUtils {
                 totalNumberOfTestCases += tc.getAllTestMethods().length;
                 passedNumberOfTestCases += tc.getPassedTests().size();
                 failedNumberOfTestCases += tc.getFailedTests().size();
+                skippedNumberOfTestCases += tc.getSkippedTests().size();
 
                 Set<ITestResult> it = new HashSet<>();
                 it.addAll(tc.getPassedTests().getAllResults());
@@ -58,7 +60,7 @@ public class BuilderResultsUtils {
         //return each test record
         return new TestRecord(
                 totalNumberOfTestCases, passedNumberOfTestCases,
-                failedNumberOfTestCases,
+                failedNumberOfTestCases, skippedNumberOfTestCases,
                 duration,
                 status
         );
@@ -86,6 +88,7 @@ public class BuilderResultsUtils {
             }
         }
     }
+
     //get the results
     public static List<Map<String, Object>> getResults() {
         return results;

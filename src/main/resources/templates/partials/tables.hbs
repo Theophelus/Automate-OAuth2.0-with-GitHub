@@ -22,7 +22,7 @@
         font-weight: normal;
     }
 
-    .session td span.indicator {
+    .session td .indicator {
         display: inline-block;
         width: 20px;
         height: 20px;
@@ -74,6 +74,27 @@
     .content div {
        width: 48%;
     }
+    .indicator .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        height: 50px;
+        transform: translateX(-50%);
+        background: #FFFFFF;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        padding: 0px 0px;
+        margin-top: -50px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        z-index: 1;
+    }
+    .indicator:hover .tooltiptext{
+        visibility: visible;
+    }
+
 </style>
 <div class="session">
     <table>
@@ -93,7 +114,10 @@
                 <td>{{TestSuite}}</td>
                 <td>{{TestCase}}</td>
                 <td>{{Duration}} ms</td>
-                <td><span class="indicator {{status}}"></span>
+                <td>
+                    <div class="indicator {{status}}">
+                        <span class="tooltiptext"> {{status}} </span>
+                    </div>
                 </td>
             </tr>
             <tr class="hidden-row">

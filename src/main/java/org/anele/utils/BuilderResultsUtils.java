@@ -82,9 +82,12 @@ public class BuilderResultsUtils {
                 if (method.getMethodName().contains(iTestNGMethod.getMethodName())) {
                     status = "fail";
                     break;
-                } else {
-                    status = "skip";
                 }
+            }
+        }
+        for (ITestNGMethod method : tc.getSkippedTests().getAllMethods()) {
+            if (method.getMethodName().contains(iTestNGMethod.getMethodName())) {
+                status = "skip";
                 break;
             }
         }

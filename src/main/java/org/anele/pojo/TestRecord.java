@@ -24,43 +24,15 @@ public class TestRecord {
         return totalNumberOfTestCases;
     }
 
-    public void setTotalNumberOfTestCases(int totalNumberOfTestCases) {
-        this.totalNumberOfTestCases = totalNumberOfTestCases;
-    }
-
     public int getPassedNumberOfTestCases() {
         return passedNumberOfTestCases;
-    }
-
-    public void setPassedNumberOfTestCases(int passedNumberOfTestCases) {
-        this.passedNumberOfTestCases = passedNumberOfTestCases;
     }
 
     public int getFailedNumberOfTestCases() {
         return failedNumberOfTestCases;
     }
 
-    public void setFailedNumberOfTestCases(int failedNumberOfTestCases) {
-        this.failedNumberOfTestCases = failedNumberOfTestCases;
-    }
-
     public int getSkippedNumberOfTestCases() {
         return skippedNumberOfTestCases;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

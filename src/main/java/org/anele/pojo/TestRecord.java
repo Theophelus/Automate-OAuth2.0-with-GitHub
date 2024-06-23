@@ -4,16 +4,18 @@ public class TestRecord {
     private int totalNumberOfTestCases=0;
     private int passedNumberOfTestCases=0;
     private int failedNumberOfTestCases=0;
+    private int skippedNumberOfTestCases=0;
     private String duration;
     private String status;
 
     public TestRecord(){
     }
 
-    public TestRecord(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, String duration, String status) {
+    public TestRecord(int totalNumberOfTestCases, int passedNumberOfTestCases, int failedNumberOfTestCases, int skippedNumberOfTestCases, String duration, String status) {
         this.totalNumberOfTestCases = totalNumberOfTestCases;
         this.passedNumberOfTestCases = passedNumberOfTestCases;
         this.failedNumberOfTestCases = failedNumberOfTestCases;
+        this.skippedNumberOfTestCases = skippedNumberOfTestCases;
         this.duration = duration;
         this.status = status;
     }
@@ -42,7 +44,9 @@ public class TestRecord {
         this.failedNumberOfTestCases = failedNumberOfTestCases;
     }
 
-
+    public int getSkippedNumberOfTestCases() {
+        return skippedNumberOfTestCases;
+    }
 
     public String getDuration() {
         return duration;

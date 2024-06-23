@@ -10,54 +10,60 @@ import static org.anele.utils.ExecutionTimesUtils.calculateTestDurations;
 public class BuilderResultsUtils {
 
     private static List<Map<String, Object>> results;
-    public static TestRecord buildRecord(List<ISuite> suites){
+    static String status = null;
+
+    public static TestRecord buildRecord(List<ISuite> suites) {
+        int totalNumberOfTestCases = 0;
+        int passedNumberOfTestCases = 0;
+        int failedNumberOfTestCases = 0;
+
+        String duration = null;
+
         //define TestRecord object to store data
         TestRecord tr = new TestRecord();
         results = new ArrayList<>();
-
-        //loop through the list of iSuites
-        for(ISuite suite: suites){
-
+        //loop through the suites
+        for (ISuite suite : suites) {
             //get results from the suite and store into a map
             Map<String, ISuiteResult> suiteResult = suite.getResults();
-            for(ISuiteResult result: suiteResult.values()){
 
+            for (ISuiteResult result : suiteResult.values()) {
                 ITestContext tc = result.getTestContext();
-                //save test results into the Test Records class to count each tests statuses
-                tr.setTotalNumberOfTestCases((tc.getAllTestMethods().length) +1);
-                tr.setPassedNumberOfTestCases((tc.getPassedTests().size())+1);
-                tr.setFailedNumberOfTestCases((tc.getFailedTests().size()) +1);
+
+                totalNumberOfTestCases += tc.getAllTestMethods().length;
+                passedNumberOfTestCases += tc.getPassedTests().size();
+                failedNumberOfTestCases += tc.getFailedTests().size();
 
                 Set<ITestResult> it = new HashSet<>();
                 it.addAll(tc.getPassedTests().getAllResults());
                 it.addAll(tc.getFailedTests().getAllResults());
+                it.addAll(tc.getSkippedTests().getAllResults());
                 //get all test methods
                 ITestNGMethod[] allTestMethods = tc.getAllTestMethods();
                 for (ITestNGMethod iTestNGMethod : allTestMethods) {
-                    //calculate duration
-                    tr.setDuration(String.valueOf(calculateTestDurations(it, iTestNGMethod.getMethodName())));
-                    // add a map to append data into the template
+                    duration = String.valueOf(calculateTestDurations(it, iTestNGMethod.getMethodName()));
                     Map<String, Object> r = new HashMap<>();
                     r.put("TestSuite", suite.getName());
                     r.put("TestCase", iTestNGMethod.getMethodName());
-                    r.put("Duration", tr.getDuration());
+                    r.put("Duration", duration);
 
-                    // add result into the list
+                    r.put("status", status);
+                    tr.setStatus(status);
                     results.add(r);
-                }
 
+                }
             }
         }
-
-
-        return tr;
+        //return each test record
+        return new TestRecord(
+                totalNumberOfTestCases, passedNumberOfTestCases,
+                failedNumberOfTestCases,
+                duration,
+                status
+        );
     }
 
-    private static void testStatus(ITestNGMethod iTestNGMethod, ITestContext tc, Map<String, Object> r, TestRecord tr) {
-
-    }
-
-    //get results
+    //get the results
     public static List<Map<String, Object>> getResults() {
         return results;
     }

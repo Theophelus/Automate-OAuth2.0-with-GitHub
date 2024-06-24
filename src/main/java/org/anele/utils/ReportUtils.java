@@ -17,9 +17,19 @@ import static org.anele.utils.QueryableUtils.getBuildRequests;
 public class ReportUtils implements IReporter {
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-
         var result = buildRecord(suites);
+        try {
+            //get all the template data
+            Map<String, Object> headData = new HashMap<>();
+            headData.put("currentDate", getCurrentDay());
+            var statisticsData = getStatisticsData(result);
+            var executionInfoData = getExecutionInfoData(result);
+            var tableData = getTableData();
 
+
+        } catch (Exception e) {
+            LogHelper.error("Error occurred with creating report:", e.getMessage());
+        }
     }
 
     private static Map<String, Object> getTableData() {

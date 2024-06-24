@@ -19,13 +19,22 @@ public class ReportUtils implements IReporter {
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
         var result = buildRecord(suites);
         try {
-            //get all the template data
+            // Prepare data for the main template
             Map<String, Object> headData = new HashMap<>();
             headData.put("currentDate", getCurrentDay());
             var statisticsData = getStatisticsData(result);
             var executionInfoData = getExecutionInfoData(result);
             var tableData = getTableData();
 
+            //load templates
+            var head = HandlebarsTemplateHelper.renderPartials(
+                    "src/main/resources/templates/partials/heads.hbs", headData);
+            var statistics = HandlebarsTemplateHelper.renderPartials(
+                    "src/main/resources/templates/partials/statistics.hbs", statisticsData);
+            var executionInfo = HandlebarsTemplateHelper.renderPartials(
+                    "src/main/resources/templates/partials/executionInfo.hbs", executionInfoData);
+            var tables = HandlebarsTemplateHelper.renderMainTemplates(
+                    "src/main/resources/templates/partials/tables.hbs", tableData);
 
         } catch (Exception e) {
             LogHelper.error("Error occurred with creating report:", e.getMessage());

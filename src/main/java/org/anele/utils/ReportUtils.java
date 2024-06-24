@@ -36,6 +36,16 @@ public class ReportUtils implements IReporter {
             var tables = HandlebarsTemplateHelper.renderMainTemplates(
                     "src/main/resources/templates/partials/tables.hbs", tableData);
 
+            //combine the templates
+            Map<String, Object> data = new HashMap<>();
+            data.put("heads", head);
+            data.put("statistics", statistics);
+            data.put("executionInfo", executionInfo);
+            data.put("tables", tables);
+
+            //render main template
+            String mainHtmlContent = HandlebarsTemplateHelper.renderMainTemplates("src/main/resources/templates/layouts/main.hbs", data);
+
         } catch (Exception e) {
             LogHelper.error("Error occurred with creating report:", e.getMessage());
         }

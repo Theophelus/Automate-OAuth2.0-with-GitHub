@@ -2,7 +2,6 @@ package org.anele.utils;
 
 import org.anele.pojo.TestRecord;
 import org.testng.*;
-
 import java.util.*;
 
 import static org.anele.utils.ExecutionTimesUtils.calculateTestDurations;
@@ -17,11 +16,8 @@ public class BuilderResultsUtils {
         int passedNumberOfTestCases = 0;
         int failedNumberOfTestCases = 0;
         int skippedNumberOfTestCases = 0;
-
         String duration = null;
 
-        //define TestRecord object to store data
-        TestRecord tr = new TestRecord();
         results = new ArrayList<>();
         //loop through the suites
         for (ISuite suite : suites) {

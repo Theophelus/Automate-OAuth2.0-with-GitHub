@@ -46,6 +46,17 @@ public class ReportUtils implements IReporter {
             //render main template
             String mainHtmlContent = HandlebarsTemplateHelper.renderMainTemplates("src/main/resources/templates/layouts/main.hbs", data);
 
+            String filePath = "report.html";
+
+            // Write the rendered content to a file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+                assert mainHtmlContent != null;
+                writer.write(mainHtmlContent);
+                LogHelper.info("Report saved successfully: " + filePath);
+
+            } catch (IOException io) {
+                LogHelper.error("Could not generate report: " + filePath, io.getMessage());
+            }
         } catch (Exception e) {
             LogHelper.error("Error occurred with creating report:", e.getMessage());
         }

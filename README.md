@@ -29,7 +29,7 @@ https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28
 ![img_1.png](img_1.png)
 
 ### Rendered Report information:
-![img_3.png](img_3.png)
+![img_4.png](img_4.png)
 
 #### Report is build using:
 1. Html and css: For the structure and styling

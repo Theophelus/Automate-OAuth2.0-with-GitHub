@@ -37,7 +37,7 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
       run: |
         echo "Running generateSessionCode to get authorization code..."
-        java -cp target/classes org.anele.helpers.OAuth2Helper generateSessionCode
+        java -cp ./path/to/your/project.jar org.anele.helpers.OAuth2Helper generateSessionCode
 
     - name: Read Authorization code from config.properties file
       id: read-code

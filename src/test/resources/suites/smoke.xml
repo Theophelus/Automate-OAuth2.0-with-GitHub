@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Smoke">
+    <listeners>
+        <listener class-name="org.anele.utils.ReportUtils"/>
+    </listeners>
+    <test name="getAuthenticatedUserName">
+        <classes>
+            <class name="org.anele.tests.BioTests"/>
+        </classes>
+    </test>
+</suite>

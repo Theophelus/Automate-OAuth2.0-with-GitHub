@@ -29,6 +29,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Build with Maven
+      run: mvn clean package
+
     - name: Run Authorization Scripts
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}

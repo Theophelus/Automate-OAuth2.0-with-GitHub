@@ -1,4 +1,5 @@
 package org.anele.utils;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -7,19 +8,35 @@ public class ReadConfigFileUtil {
 
     private static Properties properties = null;
 
+
     public ReadConfigFileUtil() {
         properties = new Properties();
         loadProperties();
     }
 
     private static synchronized void loadProperties() {
+        String configFilePath = "src/main/resources/config.properties";
 
+        // Check if running in CI/CD environment (check for environment variables)
+        String clientId = System.getenv("CLIENT_ID");
+        String clientSecret = System.getenv("CLIENT_SECRET");
+        String username = System.getenv("USERNAME");
+        String password = System.getenv("PASSWORD");
 
-        try (FileInputStream file = new FileInputStream("src/main/resources/config.properties")) {
-            //load the file
-            properties.load(file);
-        } catch (IOException e) {
-            throw new RuntimeException("Error while trying to load the config file: " + e);
+        if (clientId != null && clientSecret != null && username != null && password != null) {
+            // Load properties from environment variables in CI/CD
+            properties.setProperty("CLIENT_ID", clientId);
+            properties.setProperty("CLIENT_SECRET", clientSecret);
+            properties.setProperty("USERNAME", username);
+            properties.setProperty("PASSWORD", password);
+
+        } else {
+            // Load properties from local file in development
+            try (FileInputStream file = new FileInputStream(configFilePath)) {
+                properties.load(file);
+            } catch (IOException e) {
+                throw new RuntimeException("Error while trying to load the config file: " + e);
+            }
         }
     }
 
@@ -32,7 +49,7 @@ public class ReadConfigFileUtil {
     }
 
     public static String getClientId() {
-        return properties.getProperty("CLIENT_ID");
+        return properties.getProperty("client_id");
     }
 
     public static String getOAuthTokenURL() {
@@ -40,7 +57,7 @@ public class ReadConfigFileUtil {
     }
 
     public static String getClientSecret() {
-        return properties.getProperty("CLIENT_SECRET");
+        return properties.getProperty("client_secret");
     }
 
     public static String getScope() {

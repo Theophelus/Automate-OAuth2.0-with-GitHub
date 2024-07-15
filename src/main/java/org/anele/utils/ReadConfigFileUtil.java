@@ -21,20 +21,26 @@ public class ReadConfigFileUtil {
         String clientId = System.getenv("CLIENT_ID");
         String clientSecret = System.getenv("CLIENT_SECRET");
         String oauthBaseUrl = System.getenv("OAUTH_BASE_URL");
+        String oauthTokenUrl = System.getenv("OAUTH_TOKEN_URL");
         String username = System.getenv("USERNAME");
         String password = System.getenv("PASSWORD");
         String baseUrl = System.getenv("BASE_URL");
         String browser = System.getenv("BROWSER");
+        String scope = System.getenv("SCOPE");
 
-        if (clientId != null && clientSecret != null && oauthBaseUrl != null && username != null && password != null && baseUrl != null && browser != null) {
+        if (clientId != null && clientSecret != null && oauthBaseUrl != null && username
+                != null && password != null && baseUrl != null && browser != null && oauthTokenUrl != null && scope != null) {
             // Load properties from environment variables in CI/CD
             properties.setProperty("CLIENT_ID", clientId);
             properties.setProperty("CLIENT_SECRET", clientSecret);
             properties.setProperty("OAUTH_BASE_URL", oauthBaseUrl);
+            properties.setProperty("OAUTH_TOKEN_URL", oauthTokenUrl);
             properties.setProperty("USERNAME", username);
             properties.setProperty("PASSWORD", password);
             properties.setProperty("BASE_URL", baseUrl);
-            properties.setProperty("browser", browser);
+            properties.setProperty("BROWSER", browser);
+            properties.setProperty("SCOPE", scope);
+
 
         } else {
             // Load properties from local file in development
@@ -47,27 +53,27 @@ public class ReadConfigFileUtil {
     }
 
     public static String getBrowser() {
-        return properties.getProperty("browser");
+        return properties.getProperty("BROWSER");
     }
 
     public static String getOAuthBaseURL() {
-        return properties.getProperty("oauth.base.url");
+        return properties.getProperty("OAUTH_BASE_URL");
     }
 
     public static String getClientId() {
-        return properties.getProperty("client_id");
+        return properties.getProperty("CLIENT_ID");
     }
 
     public static String getOAuthTokenURL() {
-        return properties.getProperty("access.token.url");
+        return properties.getProperty("ACCESS_TOKEN_URL");
     }
 
     public static String getClientSecret() {
-        return properties.getProperty("client_secret");
+        return properties.getProperty("CLIENT_SECRET");
     }
 
     public static String getScope() {
-        return properties.getProperty("scope");
+        return properties.getProperty("SCOPE");
     }
 
     public static String getUsername() {
@@ -79,6 +85,6 @@ public class ReadConfigFileUtil {
     }
 
     public static String getBaseUrl() {
-        return properties.getProperty("base.url");
+        return properties.getProperty("BASE_URL");
     }
 }

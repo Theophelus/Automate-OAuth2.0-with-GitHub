@@ -34,7 +34,7 @@ public class BaseCore extends OAuth2Helper {
 
         code = OAuth2Helper.returnOAuthorizationCode
                 (
-                        getBrowser(),
+                        "edge",
                         getOAuthBaseURL(),
                         getClientId(), getScope(),
                         getUsername(),

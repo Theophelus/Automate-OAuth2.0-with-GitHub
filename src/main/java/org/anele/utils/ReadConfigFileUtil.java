@@ -25,11 +25,11 @@ public class ReadConfigFileUtil {
         String username = System.getenv("USERNAME");
         String password = System.getenv("PASSWORD");
         String baseUrl = System.getenv("BASE_URL");
-        String browser = System.getenv("BROWSER");
+//        String browser = System.getenv("BROWSER");
         String scope = System.getenv("SCOPE");
 
         if (clientId != null && clientSecret != null && oauthBaseUrl != null && username
-                != null && password != null && baseUrl != null && browser != null && oauthTokenUrl != null && scope != null) {
+                != null && password != null && baseUrl != null && oauthTokenUrl != null && scope != null) {
             // Load properties from environment variables in CI/CD
             properties.setProperty("CLIENT_ID", clientId);
             properties.setProperty("CLIENT_SECRET", clientSecret);
@@ -38,7 +38,7 @@ public class ReadConfigFileUtil {
             properties.setProperty("USERNAME", username);
             properties.setProperty("PASSWORD", password);
             properties.setProperty("BASE_URL", baseUrl);
-            properties.setProperty("BROWSER", browser);
+//            properties.setProperty("BROWSER", browser);
             properties.setProperty("SCOPE", scope);
 
 

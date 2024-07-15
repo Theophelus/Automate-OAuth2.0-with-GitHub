@@ -27,7 +27,7 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
 
     public static String returnOAuthorizationCode(String browser, String baseUrl, String clientId, String scope, String username, String password) throws InterruptedException {
         //get current browser to extract auth code
-        getCurrentBrowser(getBrowser());
+        getCurrentBrowser("edge");
         //build url
         String URL = buildUrl(baseUrl, clientId, scope);
         //launch the browser

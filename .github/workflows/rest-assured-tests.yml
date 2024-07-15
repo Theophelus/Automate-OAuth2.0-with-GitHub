@@ -51,7 +51,7 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           OAUTH_BASE_URL: ${{ secrets.OAUTH_BASE_URL }}
-          ACCESS_TOKEN_URL: ${{ secrets.ACCESS_TOKEN_URL }}
+          OAUTH_TOKEN_URL: ${{ secrets.OAUTH_TOKEN_URL }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           BASE_URL: ${{ secrets.BASE_URL }}
@@ -65,7 +65,7 @@ jobs:
           echo "CLIENT_ID: $CLIENT_ID"
           echo "CLIENT_SECRET: $CLIENT_SECRET"
           echo "OAUTH_BASE_URL: $OAUTH_BASE_URL"
-          echo "ACCESS_TOKEN_URL: $ACCESS_TOKEN_URL"
+          echo "OAUTH_TOKEN_URL: $OAUTH_TOKEN_URL"
           echo "USERNAME: $USERNAME"
           echo "PASSWORD: $PASSWORD"
           echo "BASE_URL: $BASE_URL"

@@ -26,15 +26,6 @@ public class ReadConfigFileUtil {
         String baseUrl = System.getenv("BASE_URL");
         String scope = System.getenv("SCOPE");
 
-        // Debug logging for environment variables
-        System.out.println("CLIENT_ID: " + clientId);
-        System.out.println("CLIENT_SECRET: " + clientSecret);
-        System.out.println("OAUTH_BASE_URL: " + oauthBaseUrl);
-        System.out.println("OAUTH_TOKEN_URL: " + oauthTokenUrl);
-        System.out.println("USERNAME: " + username);
-        System.out.println("PASSWORD: " + password);
-        System.out.println("BASE_URL: " + baseUrl);
-        System.out.println("SCOPE: " + scope);
 
         if (clientId != null && clientSecret != null && oauthBaseUrl != null && username != null &&
                 password != null && baseUrl != null && oauthTokenUrl != null && scope != null) {

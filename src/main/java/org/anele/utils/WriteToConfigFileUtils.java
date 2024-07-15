@@ -28,7 +28,7 @@ public class WriteToConfigFileUtils {
         //write to config.properties files
         try (FileOutputStream outputStream = new FileOutputStream("src/main/resources/config.properties")) {
             //set key value pair
-            properties.setProperty("oauth.token", value);
+            properties.setProperty("auth.code", value);
             //write to file
             properties.store(outputStream, null);
         } catch (IOException e) {
@@ -36,7 +36,7 @@ public class WriteToConfigFileUtils {
         }
     }
     //set value into config.properties file
-    public static void setOAuthToken(String value) {
-        storeProperties(value);
-    }
+//    public static void setCode(String value) {
+//        storeProperties(value);
+//    }
 }

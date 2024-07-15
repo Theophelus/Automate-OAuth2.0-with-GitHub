@@ -1,7 +1,4 @@
 package org.anele.utils;
-
-import org.anele.App;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;

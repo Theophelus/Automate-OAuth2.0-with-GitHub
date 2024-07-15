@@ -58,9 +58,22 @@ jobs:
           BROWSER: edge
           SCOPE: ${{ secrets.SCOPE }}
 
+        # debug environmental variables
         run: |
-          mvn -B package --file pom.xml
-          mvn test
+          # Optional: Output environment variables for debugging
+          echo "Environment Variables:"
+          echo "CLIENT_ID: $CLIENT_ID"
+          echo "CLIENT_SECRET: $CLIENT_SECRET"
+          echo "OAUTH_BASE_URL: $OAUTH_BASE_URL"
+          echo "ACCESS_TOKEN_URL: $ACCESS_TOKEN_URL"
+          echo "USERNAME: $USERNAME"
+          echo "PASSWORD: $PASSWORD"
+          echo "BASE_URL: $BASE_URL"
+          echo "BROWSER: $BROWSER"
+          echo "SCOPE: $SCOPE"
+
+      - name: Build and test
+        run: mvn clean test
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph

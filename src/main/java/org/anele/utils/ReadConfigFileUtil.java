@@ -20,15 +20,21 @@ public class ReadConfigFileUtil {
         // Check if running in CI/CD environment (check for environment variables)
         String clientId = System.getenv("CLIENT_ID");
         String clientSecret = System.getenv("CLIENT_SECRET");
+        String oauthBaseUrl = System.getenv("OAUTH_BASE_URL");
         String username = System.getenv("USERNAME");
         String password = System.getenv("PASSWORD");
+        String baseUrl = System.getenv("BASE_URL");
+        String browser = System.getenv("BROWSER");
 
-        if (clientId != null && clientSecret != null && username != null && password != null) {
+        if (clientId != null && clientSecret != null && oauthBaseUrl != null && username != null && password != null && baseUrl != null && browser != null) {
             // Load properties from environment variables in CI/CD
             properties.setProperty("CLIENT_ID", clientId);
             properties.setProperty("CLIENT_SECRET", clientSecret);
+            properties.setProperty("OAUTH_BASE_URL", oauthBaseUrl);
             properties.setProperty("USERNAME", username);
             properties.setProperty("PASSWORD", password);
+            properties.setProperty("BASE_URL", baseUrl);
+            properties.setProperty("browser", browser);
 
         } else {
             // Load properties from local file in development

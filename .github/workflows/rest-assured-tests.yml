@@ -50,19 +50,11 @@ jobs:
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        OAUTH_BASE_URL: ${{ secrets.OAUTH_BASE_URL }}
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
-#      run: |
-#        echo "Running generateSessionCode to get authorization code..."
-#        java -cp ./path/to/your/project.jar org.anele.helpers.OAuth2Helper generateSessionCode
-#
-#    - name: Read Authorization code from config.properties file
-#      id: read-code
-#      run: |
-#        AUTH_CODE=$(grep 'authorization.code' config.properties | cut -d '=' -f 2)
-#        echo "AUTH_CODE=${AUTH_CODE}" >> $GITHUB_ENV
-#
-#
+        BASE_URL: ${{ secrets.BASE_URL }}
+        BROWSER: ${{ secrets.BROWSER }}
 #    - name: Build with Maven
       run: mvn clean test
 

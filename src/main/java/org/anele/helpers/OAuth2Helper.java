@@ -2,9 +2,6 @@ package org.anele.helpers;
 
 import org.anele.pages.LoginIntoGitHubPage;
 
-import java.text.MessageFormat;
-
-import static org.anele.utils.WriteToConfigFileUtils.setCode;
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
 
@@ -44,7 +41,6 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         String getCode = getCurrentUrl();
         //extract authorization code'
         log.info("Session code about to be extracted: " + getCode);
-//        setCode(getCode);
         return extractCode(getCode);
     }
 

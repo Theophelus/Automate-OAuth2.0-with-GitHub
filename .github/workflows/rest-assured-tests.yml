@@ -30,7 +30,7 @@ jobs:
         cache: maven
 
     - name: Build with Maven
-      run: mvn clean package
+      run: mvn -B package --file pom.xml
 
     - name: Run Authorization Scripts
       env:
@@ -38,18 +38,18 @@ jobs:
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         USERNAME: ${{ secrets.USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
-      run: |
-        echo "Running generateSessionCode to get authorization code..."
-        java -cp ./path/to/your/project.jar org.anele.helpers.OAuth2Helper generateSessionCode
-
-    - name: Read Authorization code from config.properties file
-      id: read-code
-      run: |
-        AUTH_CODE=$(grep 'authorization.code' config.properties | cut -d '=' -f 2)
-        echo "AUTH_CODE=${AUTH_CODE}" >> $GITHUB_ENV
-
-
-    - name: Build with Maven
+#      run: |
+#        echo "Running generateSessionCode to get authorization code..."
+#        java -cp ./path/to/your/project.jar org.anele.helpers.OAuth2Helper generateSessionCode
+#
+#    - name: Read Authorization code from config.properties file
+#      id: read-code
+#      run: |
+#        AUTH_CODE=$(grep 'authorization.code' config.properties | cut -d '=' -f 2)
+#        echo "AUTH_CODE=${AUTH_CODE}" >> $GITHUB_ENV
+#
+#
+#    - name: Build with Maven
       run: mvn clean test
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive

@@ -29,23 +29,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Install Edge
-        run: |
-          wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-          sudo apt-get update
-          sudo apt-get install -y microsoft-edge-stable
-
-      - name: Set up Edge WebDriver
-        run: |
-          wget https://msedgedriver.azureedge.net/115.0.1901.203/edgedriver_linux64.zip
-          sudo apt-get install -y unzip
-          unzip edgedriver_linux64.zip
-          sudo mv msedgedriver /usr/local/bin/
-
+      # list all .xml files
       - name: List files
         run: ls -R src/test/resources/suites/
 
+      # set up environment variables
       - name: Set up environmental variables
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
@@ -55,23 +43,10 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           BASE_URL: ${{ secrets.BASE_URL }}
-          #          BROWSER: ${{ secrets.BROWSER }}
           SCOPE: ${{ secrets.SCOPE }}
 
         # debug environmental variables
         run: |
-          # Optional: Output environment variables for debugging
-          echo "Environment Variables:"
-          echo "CLIENT_ID: $CLIENT_ID"
-          echo "CLIENT_SECRET: $CLIENT_SECRET"
-          echo "OAUTH_BASE_URL: $OAUTH_BASE_URL"
-          echo "OAUTH_TOKEN_URL: $OAUTH_TOKEN_URL"
-          echo "USERNAME: $USERNAME"
-          echo "PASSWORD: $PASSWORD"
-          echo "BASE_URL: $BASE_URL"
-          echo "BROWSER: $BROWSER"
-          echo "SCOPE: $SCOPE"
-
           mvn -B package --file pom.xml
           mvn test
 

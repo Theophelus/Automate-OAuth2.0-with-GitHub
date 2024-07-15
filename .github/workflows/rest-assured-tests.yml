@@ -46,7 +46,7 @@ jobs:
       - name: List files
         run: ls -R src/test/resources/suites/
 
-      - name: Run Authorization Scripts
+      - name: Set up environmental variables
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
@@ -55,9 +55,12 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           BASE_URL: ${{ secrets.BASE_URL }}
-          BROWSER: ${{ secrets.BROWSER }}
-        #    - name: Build with Maven
-        run: mvn clean test
+          BROWSER: edge
+          SCOPE: ${{ secrets.SCOPE }}
+
+        run: |
+          mvn -B package --file pom.xml
+          mvn test
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph

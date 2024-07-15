@@ -56,8 +56,8 @@ public class BaseCore extends OAuth2Helper {
 
         RequestSpecification httpRequest = getRequestSpec(getOAuthTokenURL());
         Map<String, String> param = new HashMap<>();
-        param.put("CLIENT_ID", getClientId());
-        param.put("CLIENT_SECRET", getClientSecret());
+        param.put("client_id", getClientId());
+        param.put("client_secret", getClientSecret());
         param.put("scope", getScope());
         param.put("code", code);
 
@@ -72,10 +72,9 @@ public class BaseCore extends OAuth2Helper {
                 throw new Exception("Failed to get access token from the request " + httpResponse.statusCode());
             }
 
-            String accessToken = httpResponse.jsonPath().get("access_token");
             //save into config.properties file
             //return token
-            return accessToken;
+            return httpResponse.jsonPath().get("access_token");
 
         } catch (IOException e) {
             log.error("Error occurred while trying to extract access token: ",

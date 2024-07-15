@@ -8,7 +8,6 @@ public class ReadConfigFileUtil {
 
     private static Properties properties = null;
 
-
     public ReadConfigFileUtil() {
         properties = new Properties();
         loadProperties();
@@ -27,19 +26,17 @@ public class ReadConfigFileUtil {
         String baseUrl = System.getenv("BASE_URL");
         String scope = System.getenv("SCOPE");
 
-        if (clientId != null && clientSecret != null && oauthBaseUrl != null && username
-                != null && password != null && baseUrl != null && oauthTokenUrl != null && scope != null) {
+        if (clientId != null && clientSecret != null && oauthBaseUrl != null && username != null &&
+                password != null && baseUrl != null && oauthTokenUrl != null && scope != null) {
             // Load properties from environment variables in CI/CD
-            System.out.println("Client Secrets: " + clientSecret);
-            properties.getProperty("CLIENT_ID", clientId);
-            properties.getProperty("CLIENT_SECRET", clientSecret);
-            properties.getProperty("OAUTH_BASE_URL", oauthBaseUrl);
-            properties.getProperty("OAUTH_TOKEN_URL", oauthTokenUrl);
-            properties.getProperty("USERNAME", username);
-            properties.getProperty("PASSWORD", password);
-            properties.getProperty("BASE_URL", baseUrl);
-            properties.getProperty("SCOPE", scope);
-
+            properties.setProperty("CLIENT_ID", clientId);
+            properties.setProperty("CLIENT_SECRET", clientSecret);
+            properties.setProperty("OAUTH_BASE_URL", oauthBaseUrl);
+            properties.setProperty("OAUTH_TOKEN_URL", oauthTokenUrl);
+            properties.setProperty("USERNAME", username);
+            properties.setProperty("PASSWORD", password);
+            properties.setProperty("BASE_URL", baseUrl);
+            properties.setProperty("SCOPE", scope);
 
         } else {
             // Load properties from local file in development

@@ -1,5 +1,7 @@
 package org.anele.utils;
 
+import org.anele.App;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -15,6 +17,7 @@ public class ReadConfigFileUtil {
 
     private static synchronized void loadProperties() {
 
+
         try (FileInputStream file = new FileInputStream("src/main/resources/config.properties")) {
             //load the file
             properties.load(file);
@@ -28,18 +31,19 @@ public class ReadConfigFileUtil {
     }
 
     public static String getOAuthBaseURL() {
-        return properties.getProperty("oauthBaseURL");
+        return properties.getProperty("oauth.base.url");
     }
 
     public static String getClientId() {
-        return properties.getProperty("clientId");
+        return properties.getProperty("CLIENT_ID");
     }
-    public static String getOAuthTokenURL(){
-        return properties.getProperty("access_token_url");
+
+    public static String getOAuthTokenURL() {
+        return properties.getProperty("access.token.url");
     }
 
     public static String getClientSecret() {
-        return properties.getProperty("clientSecret");
+        return properties.getProperty("CLIENT_SECRET");
     }
 
     public static String getScope() {
@@ -47,13 +51,14 @@ public class ReadConfigFileUtil {
     }
 
     public static String getUsername() {
-        return properties.getProperty("username");
+        return properties.getProperty("USERNAME");
     }
 
     public static String getPassword() {
-        return properties.getProperty("password");
+        return properties.getProperty("PASSWORD");
     }
+
     public static String getBaseUrl() {
-        return properties.getProperty("baseURL");
+        return properties.getProperty("base.url");
     }
 }

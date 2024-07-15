@@ -44,7 +44,7 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         String getCode = getCurrentUrl();
         //extract authorization code'
         log.info("Session code about to be extracted: " + getCode);
-        setCode(getCode);
+//        setCode(getCode);
         return extractCode(getCode);
     }
 

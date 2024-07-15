@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.anele.basePage.BaseCore;
 import org.anele.basePage.DriverFactory;
-import org.anele.utils.ReadConfigFileUtil;
+import org.anele.utils.ConfigFileUtils;
 import org.testng.annotations.*;
 
 public class BaseTest extends BaseCore {
@@ -17,7 +17,7 @@ public class BaseTest extends BaseCore {
         generateSessionCode();
         //build a request
         httpRequest = new RequestSpecBuilder()
-                .setBaseUri(ReadConfigFileUtil.getBaseUrl())
+                .setBaseUri(ConfigFileUtils.getBaseUrl())
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", "Bearer " + access_token())
                 .setConfig(RestAssuredConfig.config().logConfig(LogConfig.logConfig().blacklistHeader("Authorization")))

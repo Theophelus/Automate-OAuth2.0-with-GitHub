@@ -55,8 +55,6 @@ public class DriverFactory {
 
     static void maximizeBrowser(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(60));
         driver.manage().window().maximize();
     }
 

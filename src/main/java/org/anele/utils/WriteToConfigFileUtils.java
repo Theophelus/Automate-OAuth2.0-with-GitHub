@@ -36,7 +36,7 @@ public class WriteToConfigFileUtils {
         }
     }
     //set value into config.properties file
-//    public static void setCode(String value) {
-//        storeProperties(value);
-//    }
+    public static void setCode(String value) {
+        storeProperties(value);
+    }
 }

@@ -61,7 +61,6 @@ public class LoginIntoGitHubPage extends DriverFactory {
                 element.sendKeys(Keys.BACK_SPACE.toString().repeat(currentElement.length()));
             }
 
-            log.info("Populating text box with value " + value + ".");
             element.sendKeys(value);
 
         } catch (Exception e) {

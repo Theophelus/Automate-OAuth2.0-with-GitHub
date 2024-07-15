@@ -6,8 +6,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.anele.helpers.LogHelper;
 import org.anele.helpers.OAuth2Helper;
+import org.anele.utils.ConfigFileUtils;
 import org.anele.utils.PathUtils;
-import org.anele.utils.ReadConfigFileUtil;
 import org.anele.utils.WriteToConfigFileUtils;
 import org.apache.http.HttpStatus;
 
@@ -17,8 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
-import static org.anele.utils.ReadConfigFileUtil.*;
-import static org.anele.utils.ReadConfigFileUtil.getScope;
+import static org.anele.utils.ConfigFileUtils.*;
 
 public class BaseCore extends OAuth2Helper {
     static LogHelper log = new LogHelper(BaseCore.class);
@@ -26,7 +25,7 @@ public class BaseCore extends OAuth2Helper {
     private static RequestSpecification httpRequest;
 
     public BaseCore() {
-        new ReadConfigFileUtil();
+        new ConfigFileUtils();
         new WriteToConfigFileUtils();
     }
 

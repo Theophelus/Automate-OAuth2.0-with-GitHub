@@ -31,15 +31,15 @@ public class ReadConfigFileUtil {
         if (clientId != null && clientSecret != null && oauthBaseUrl != null && username
                 != null && password != null && baseUrl != null && oauthTokenUrl != null && scope != null) {
             // Load properties from environment variables in CI/CD
-            properties.setProperty("CLIENT_ID", clientId);
-            properties.setProperty("CLIENT_SECRET", clientSecret);
-            properties.setProperty("OAUTH_BASE_URL", oauthBaseUrl);
-            properties.setProperty("OAUTH_TOKEN_URL", oauthTokenUrl);
-            properties.setProperty("USERNAME", username);
-            properties.setProperty("PASSWORD", password);
-            properties.setProperty("BASE_URL", baseUrl);
-//            properties.setProperty("BROWSER", browser);
-            properties.setProperty("SCOPE", scope);
+            properties.getProperty("CLIENT_ID", clientId);
+//            properties.setProperty("CLIENT_SECRET", clientSecret);
+//            properties.setProperty("OAUTH_BASE_URL", oauthBaseUrl);
+//            properties.setProperty("OAUTH_TOKEN_URL", oauthTokenUrl);
+//            properties.setProperty("USERNAME", username);
+//            properties.setProperty("PASSWORD", password);
+//            properties.setProperty("BASE_URL", baseUrl);
+////            properties.setProperty("BROWSER", browser);
+//            properties.setProperty("SCOPE", scope);
 
 
         } else {
@@ -65,7 +65,7 @@ public class ReadConfigFileUtil {
     }
 
     public static String getOAuthTokenURL() {
-        return properties.getProperty("ACCESS_TOKEN_URL");
+        return properties.getProperty("OAUTH_TOKEN_URL");
     }
 
     public static String getClientSecret() {

@@ -32,7 +32,7 @@ public class DriverFactory {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         EdgeOptions edgeOptions = getEdgeOptions(capabilities);
 
-        if (browser.equalsIgnoreCase("edge")) {
+        if (browser != null && browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
             //make sure WebDriver is only called by the thread that created it using ThreadGuard.protect()
             driver.set(ThreadGuard.protect(new EdgeDriver(edgeOptions)));

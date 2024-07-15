@@ -2,6 +2,8 @@ package org.anele.helpers;
 
 import org.anele.pages.LoginIntoGitHubPage;
 
+import static org.anele.utils.ReadConfigFileUtil.getBrowser;
+
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
 
@@ -25,7 +27,7 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
 
     public static String returnOAuthorizationCode(String browser, String baseUrl, String clientId, String scope, String username, String password) throws InterruptedException {
         //get current browser to extract auth code
-        getCurrentBrowser(browser);
+        getCurrentBrowser(getBrowser());
         //build url
         String URL = buildUrl(baseUrl, clientId, scope);
         //launch the browser

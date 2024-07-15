@@ -29,6 +29,20 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Install Edge
+      run: |
+        wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+        sudo apt-get update
+        sudo apt-get install -y microsoft-edge-stable
+
+    - name: Set up Edge WebDriver
+      run: |
+        wget https://msedgedriver.azureedge.net/115.0.1901.203/edgedriver_linux64.zip
+        sudo apt-get install -y unzip
+        unzip edgedriver_linux64.zip
+        sudo mv msedgedriver /usr/local/bin/
+
     - name: List files
       run: ls -R src/test/resources/suites/
 
@@ -50,7 +64,7 @@ jobs:
 #
 #
 #    - name: Build with Maven
-      run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suites/user.xml
+      run: mvn clean test
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph

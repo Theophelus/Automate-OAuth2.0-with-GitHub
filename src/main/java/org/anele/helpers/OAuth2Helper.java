@@ -2,37 +2,32 @@ package org.anele.helpers;
 
 import org.anele.pages.LoginIntoGitHubPage;
 
-import static org.anele.utils.ReadConfigFileUtil.getBrowser;
+//import static org.anele.utils.ReadConfigFileUtil.getBrowser;
 
 
 public class OAuth2Helper extends LoginIntoGitHubPage {
-
     static LogHelper log = new LogHelper(OAuth2Helper.class);
 
     //method to build Auth Url with base url, client id and scope as parameters
     private static String buildUrl(String baseUrl,
                                    String clientId,
                                    String scope) {
-
         try {
-
             return String.format("%s?%s%s&%s%s",
                     baseUrl, "client_id=", clientId, "scope=", scope);
-
         } catch (Exception e) {
             System.out.println("Base URL not built successfully" + e.getMessage());
             return null;
         }
     }
 
-    public static String returnOAuthorizationCode(String browser, String baseUrl, String clientId, String scope, String username, String password) throws InterruptedException {
+    public static String returnOAuthorizationCode(String baseUrl, String clientId, String scope, String username, String password) throws InterruptedException {
         //get current browser to extract auth code
         getCurrentBrowser("edge");
         //build url
         String URL = buildUrl(baseUrl, clientId, scope);
         //launch the browser
         assert URL != null;
-
         getDriver().get(URL);
         LogHelper.info(URL + "is launched successfully");
         //validate login header
@@ -48,7 +43,6 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
 
     //create a method to extract authorization code, after logging in into gitHub application
     private static String extractCode(String code) {
-
         String authorizationCode = null;
         try {
 

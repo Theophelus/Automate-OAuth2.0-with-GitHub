@@ -2,9 +2,6 @@ package org.anele.helpers;
 
 import org.anele.pages.LoginIntoGitHubPage;
 
-//import static org.anele.utils.ReadConfigFileUtil.getBrowser;
-
-
 public class OAuth2Helper extends LoginIntoGitHubPage {
     static LogHelper log = new LogHelper(OAuth2Helper.class);
 
@@ -37,7 +34,6 @@ public class OAuth2Helper extends LoginIntoGitHubPage {
         //get currentUrl
         String getCode = getCurrentUrl();
         //extract authorization code'
-        log.info("Session code about to be extracted: " + getCode);
         return extractCode(getCode);
     }
 

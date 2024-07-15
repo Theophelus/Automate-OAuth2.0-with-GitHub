@@ -4,15 +4,19 @@ public class ConfigFileUtils {
 
     static LocalConfigUtils local = null;
     static CiConfigFileUtils ci = null;
-    static boolean platform = false;
+    static boolean platform;
 
     //initial different environments
     static {
+        //as long platform is true, execute CI
+        platform = System.getenv("CLIENT_ID") != null;
+
         if (platform) {
             ci = new CiConfigFileUtils();
         } else
             local = new LocalConfigUtils();
     }
+
     public static String getBrowser() {
         return platform ? ci.getBrowser() : local.getBrowser();
     }
